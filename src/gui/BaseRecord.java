@@ -4,35 +4,23 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-
-public class Record extends Thread{
+public abstract class BaseRecord {
 	private JFrame frame;
 	private JLabel label;
 	private int xLocation;
 	private int yLocation;
 	static File file = new File("record.txt");
-	public Record(JFrame frame,JLabel label) {
+	public BaseRecord(JFrame frame,JLabel label) {
 		this.frame = frame;
 		this.label = label;
 	}
-	public void run() {
-		while(true) {
-			updateLocation();
-			writeRecord();			
-			try {
-				Thread.sleep(100);
-			}catch (InterruptedException e){
-				e.printStackTrace();
-			}
-		}
-			
-	}
 	
 	//¶ÁÈ¡ºá×Ý×ø±ê
-	void getLocation() { 
+	private void getLocation() { 
 		xLocation = frame.getX();
 		yLocation = frame.getY();
 	}
@@ -56,6 +44,4 @@ public class Record extends Thread{
             e.printStackTrace();
         }			
 	}
-	
-
 }

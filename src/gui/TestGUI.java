@@ -55,15 +55,21 @@ public class TestGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // 让窗体变得可见
         
-        //方法一 使用监听器
-        Listener listener = new Listener(frame, label);        
-        frame.addComponentListener(listener);
-        frame.addWindowListener(listener);
+//        //方法1 使用监听器
+//        Listener listener = new Listener(frame, label);        
+//        frame.addComponentListener(listener);
+//        frame.addWindowListener(listener);
+        //方法1.2
+        NewListener newListener = new NewListener(frame, label);        
+        frame.addComponentListener(newListener);
+      	frame.addWindowListener(newListener);        
         
         frame.setVisible(true);
-        //方法二 启动线程更新位置信息
-        Record record = new Record(frame,label);
-        record.start();
-        
+        //方法2 启动线程更新位置信息
+//        Record record = new Record(frame,label);
+//        record.start();
+        //方法2.2
+//        NewRecord newRecord = new NewRecord(frame,label);
+//        new Thread(newRecord).start();
     }
 }

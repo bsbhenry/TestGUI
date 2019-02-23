@@ -8,11 +8,13 @@ import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class Listener implements ComponentListener, WindowListener {
-	private Record record;
-	public Listener(JFrame frame,JLabel label){
-		record = new Record(frame,label);
+public class NewListener extends BaseRecord implements ComponentListener, WindowListener {
+
+	public NewListener(JFrame frame, JLabel label) {
+		super(frame, label);
+		// TODO Auto-generated constructor stub
 	}
+
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
@@ -20,10 +22,9 @@ public class Listener implements ComponentListener, WindowListener {
 	}
 
 	@Override
-	//窗口关闭前记录位置
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub
-		record.writeRecord();
+		writeRecord();
 	}
 
 	@Override
@@ -63,10 +64,9 @@ public class Listener implements ComponentListener, WindowListener {
 	}
 
 	@Override
-	//窗口移动时就更新label上显示的位置信息
 	public void componentMoved(ComponentEvent e) {
 		// TODO Auto-generated method stub
-		record.updateLocation();
+		updateLocation();
 	}
 
 	@Override

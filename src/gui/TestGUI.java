@@ -55,13 +55,13 @@ public class TestGUI {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // 让窗体变得可见
         
-        //使用监听器
+        //方法一 使用监听器
         Listener listener = new Listener(frame, label);        
         frame.addComponentListener(listener);
         frame.addWindowListener(listener);
         
         frame.setVisible(true);
-        //启动线程更新位置信息
+        //方法二 启动线程更新位置信息
         Record record = new Record(frame,label);
         record.start();
         

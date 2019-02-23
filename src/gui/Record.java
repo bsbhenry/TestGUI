@@ -20,9 +20,8 @@ public class Record extends Thread{
 	}
 	public void run() {
 		while(true) {
-			getLocation();
-			writeRecord();
-			updateLabel();
+			updateLocation();
+			writeRecord();			
 			try {
 				Thread.sleep(100);
 			}catch (InterruptedException e){
@@ -33,13 +32,19 @@ public class Record extends Thread{
 	}
 	
 	//读取横纵坐标
-	private void getLocation() { 
+	void getLocation() { 
 		xLocation = frame.getX();
 		yLocation = frame.getY();
 	}
 	
+	//更新位置
+	void updateLocation() {
+		getLocation();
+		label.setText("X: " + xLocation + " Y: " + yLocation);
+	}	
+	
 	//记录坐标到文件
-	private void writeRecord() {
+	void writeRecord() {
         try (
                 FileOutputStream fos  = new FileOutputStream(file);
                 DataOutputStream dos =new DataOutputStream(fos);
@@ -51,8 +56,5 @@ public class Record extends Thread{
         }			
 	}
 	
-	//更新label
-	private void updateLabel() {
-		label.setText("X: " + xLocation + " Y: " + yLocation);
-	}
+
 }

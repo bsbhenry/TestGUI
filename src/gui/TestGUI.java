@@ -13,6 +13,8 @@ public class TestGUI {
 	static File file = new File("record.txt");
 	private static int xLocation = 300;
 	private static int yLocation = 300;	
+	
+	//从文件读取坐标信息
 	private static void getLocation() {
         if(file.length() == 0) return;
     	try(
@@ -40,7 +42,7 @@ public class TestGUI {
         // 主窗体中的组件设置为绝对定位
         frame.setLayout(null);
  
-        // Label显示窗体位置
+        // label显示窗体位置
         JLabel label = new JLabel("X: " + xLocation + " Y: " + yLocation);
  
         // 同时设置组件的大小和位置
@@ -52,8 +54,16 @@ public class TestGUI {
         //退出窗体的时候退出程序
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // 让窗体变得可见
+        
+        //使用监听器
+        Listener listener = new Listener(frame, label);        
+        frame.addComponentListener(listener);
+        frame.addWindowListener(listener);
+        
         frame.setVisible(true);
+        //启动线程更新位置信息
         Record record = new Record(frame,label);
         record.start();
+        
     }
 }
